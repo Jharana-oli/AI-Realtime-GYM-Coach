@@ -20,7 +20,7 @@ from services.coaching.voice_pipeline import VoicePipeline, autoplay_audio
 def main():
     st.set_page_config(
         page_icon="🏋️‍♀️",
-        page_title="AI Real-time GYM Coach",
+        page_title="AI Real-time Physical Trainer",
         initial_sidebar_state="expanded",
         layout="centered"
     )
@@ -165,7 +165,7 @@ def main():
                 st.metric("Torso Angle", f"{st.session_state.torso_angle}°")
                 st.metric("Balance Status", st.session_state.balance_status)
 
-    st.title("AI Real-time GYM Coach")
+    st.title("AI Real-time Physical trainer")
     st.markdown("#### Real-time pose detection with proactive AI voice coaching")
  
     if st.session_state.get("audio_to_play"):
