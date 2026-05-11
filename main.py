@@ -52,7 +52,7 @@ def main():
     workout_started = st.session_state.get("workout_started", False)
     
     with st.sidebar:
-        st.title("🏋️‍♂️ Hamro AI Coach")
+        st.title("🏋️‍♂️ Hamro AI Trainer")
 
         if st.session_state.username:
             st.caption(f"👤 Login as {st.session_state.username}")
@@ -201,7 +201,16 @@ def main():
             key="exercise-analysis",
             mode=WebRtcMode.SENDRECV,
             video_processor_factory=VideoProcessorClass,
-            rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+            rtc_configuration={
+                "iceServers": [
+                    {"urls": ["stun:stun.l.google.com:19302"]},
+                    {
+                        "urls": ["turn:openrelay.metered.ca:80"],
+                        "username": "openrelayproject",
+                        "credential": "openrelayproject",
+                    },
+                ]
+            },
             media_stream_constraints={
                 "video": True,
                 "audio": False
@@ -255,7 +264,7 @@ def main():
             agg_df.index += 1
             st.table(agg_df, border="horizontal")
         else:
-            st.info("No workout history found.")
+            st.info("No workout history found..")
 
 
 if __name__ == "__main__":
